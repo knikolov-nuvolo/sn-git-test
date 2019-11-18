@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>true</direct>
+        <endpoint>x_400764_angular_a_mm116.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+    <g:evaluate>
+        var blueprints = {
+            "request_details": {
+                "metadata": {},
+                "data": {
+                    "distribution_request": {
+                        "value": {
+                            "reported_by": {
+                                "type": "field",
+                                "question": "Reported By",
+                                "answer": "Chris Golpe"
+                            },
+                            "multi_input": {
+                                "type": "table",
+                                "columns": [
+                                    "Asset Type",
+                                    "Quantity"
+                                ],
+                                "rows": [
+                                    [
+                                        "Infusion Pump",
+                                        "3"
+                                    ],
+                                    [
+                                        "Hospital Bed",
+                                        "1"
+                                    ]
+                                ]
+                            },
+                            "description": {
+                                "type": "field",
+                                "question": "Description",
+                                "answer": "Some text...."
+                            }
+                        },
+                        "display_value": "Distribution Request"
+                    }
+                }
+            }
+        };
+
+        var distributionRequest = blueprints.request_details.data.distribution_request;
+
+        var title = distributionRequest.display_value;
+        var itemsDefinitions = distributionRequest.value;
+        var items = Object.getOwnPropertyNames(itemsDefinitions)
+            .map(function(name) {
+                var item = JSON.parse(JSON.stringify(itemsDefinitions[name]));
+                item.name = name;
+                return item;
+            });
+        
+        title;
+        items;
+    </g:evaluate>
+    
+    <j2:set var="jvar_title" value="$[title]" />
+    <h1>$[jvar_title]</h1>
+
+    <j2:set var="jvar_items" value="$[items]" />
+    
+    <j2:forEach items="$[jvar_items]" var="jvar_item" indexVar="jvar_index">
+        <j2:choose>
+            <j2:when test="$[jvar_item.type == 'field']">
+                <div id="element.distribution_request.$[jvar_index]" class="form-group">
+                    <div id="label.distribution_request.$[jvar_index]" nowrap="true">
+
+                        <label dir="ltr" class=" col-xs-12 col-md-3 col-lg-4 control-label">
+                            <span data-html="false">$[jvar_item.question]</span>
+                        </label>
+                    </div>
+
+                    <div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
+                        <input type="text" id="distribution_request.$[jvar_index]"
+                            name="distribution_request.$[jvar_index]"
+                            value="$[jvar_item.answer]"
+                            readonly="readonly" class="form-control" spellcheck="false" />
+                    </div>
+                </div>
+            </j2:when>
+            <j2:when test="$[jvar_item.type == 'table']">
+                <table>
+                    <thead>
+                        <tr>
+                            <j2:forEach items="$[jvar_item.columns]" var="jvar_col" indexVar="jvar_col_index">
+                                <th>$[jvar_col]</th>
+                            </j2:forEach>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <j2:forEach items="$[jvar_item.rows]" var="jvar_row" indexVar="jvar_row_index">
+                            <tr>
+                                <j2:forEach items="$[jvar_row]" var="jvar_cell" indexVar="jvar_cell_index">
+                                    <td>$[jvar_cell]</td>
+                                </j2:forEach>
+                            </tr>
+                        </j2:forEach>
+                    </tbody>
+                </table>
+
+            </j2:when>
+            <j2:otherwise>
+                unknown
+            </j2:otherwise>
+        </j2:choose>
+
+        <hr />
+
+    </j2:forEach>
+
+</j:jelly>]]></html>
+        <name>mm116</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-09-30 10:18:41</sys_created_on>
+        <sys_id>e483f2cc4f500010b90f417da310c76b</sys_id>
+        <sys_mod_count>72</sys_mod_count>
+        <sys_name>mm116</sys_name>
+        <sys_package display_value="Angular App" source="x_400764_angular_a">1bce86cc4f100010b90f417da310c70b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Angular App">1bce86cc4f100010b90f417da310c70b</sys_scope>
+        <sys_update_name>sys_ui_page_e483f2cc4f500010b90f417da310c76b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-09-30 14:04:07</sys_updated_on>
+    </sys_ui_page>
+</record_update>
